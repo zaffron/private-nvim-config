@@ -17,11 +17,14 @@ vim.pack.add({
 
   -- Completion
   { src = "https://github.com/Saghen/blink.cmp", version = vim.version.range("1") },
+  {
+    src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
+    version = vim.version.range('3')
+  },
 
   -- UI
   "https://github.com/goolord/alpha-nvim",
   "https://github.com/nvim-lualine/lualine.nvim",
-  "https://github.com/nvim-neo-tree/neo-tree.nvim",
   "https://github.com/lukas-reineke/indent-blankline.nvim",
   "https://github.com/folke/which-key.nvim",
   "https://github.com/karb94/neoscroll.nvim",
@@ -72,6 +75,7 @@ require("plugins.lualine")
 require("plugins.which-key")
 require("plugins.indent-blankline")
 require("plugins.vim-tmux-navigator")
+require("plugins.neotree")
 
 -- Deferred: load after UI is ready (completion, LSP, git, editing helpers)
 vim.api.nvim_create_autocmd("UIEnter", {
@@ -125,8 +129,8 @@ local function on_key(mode, lhs, plugin_mod)
   end, { desc = "lazy load " .. plugin_mod })
 end
 
-on_key("n", "\\", "plugins.neotree")
-on_cmd({ "Neotree" }, "plugins.neotree")
+-- on_key("n", "\\", "plugins.neotree")
+-- on_cmd({ "Neotree" }, "plugins.neotree")
 on_cmd({ "LazyGit", "LazyGitCurrentFile" }, "plugins.lazygit")
 on_key("n", "<leader>lg", "plugins.lazygit")
 on_cmd({ "Neogit" }, "plugins.neogit")
