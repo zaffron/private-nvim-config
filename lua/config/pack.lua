@@ -5,7 +5,7 @@ vim.pack.add({
   "https://github.com/nvim-tree/nvim-web-devicons",
 
   -- Colorscheme
-  { src = "https://github.com/catppuccin/nvim",                 name = "catppuccin" },
+  { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 
   -- Treesitter
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
@@ -18,8 +18,8 @@ vim.pack.add({
   -- Completion
   { src = "https://github.com/Saghen/blink.cmp", version = vim.version.range("1") },
   {
-    src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
-    version = vim.version.range('3')
+    src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
+    version = vim.version.range("3"),
   },
 
   -- UI
@@ -77,6 +77,11 @@ require("plugins.indent-blankline")
 require("plugins.vim-tmux-navigator")
 require("plugins.neotree")
 
+-- Alpha: load immediately on UIEnter when no file arguments
+if vim.fn.argc() == 0 then
+  require("plugins.alpha")
+end
+
 -- Deferred: load after UI is ready (completion, LSP, git, editing helpers)
 vim.api.nvim_create_autocmd("UIEnter", {
   once = true,
@@ -94,18 +99,6 @@ vim.api.nvim_create_autocmd("UIEnter", {
       require("plugins.todo-comments")
       require("plugins.neoscroll")
     end)
-  end,
-})
-
--- Alpha: only when opening nvim with no file arguments
-vim.api.nvim_create_autocmd("UIEnter", {
-  once = true,
-  callback = function()
-    if vim.fn.argc() == 0 then
-      vim.schedule(function()
-        require("plugins.alpha")
-      end)
-    end
   end,
 })
 

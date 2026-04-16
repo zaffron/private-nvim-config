@@ -20,10 +20,10 @@ dashboard.section.header.val = {
 }
 
 dashboard.section.buttons.val = {
-  dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
+  dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
   dashboard.button("f", "󰍉  > Find file", ":cd $HOME/Workspace | FzfLua files<CR>"),
-  dashboard.button("r", "  > Recent", ":FzfLua oldfiles<CR>"),
-  dashboard.button("s", "  > Settings", ":cd ~/.config/nvim | e init.lua<CR>"),
+  dashboard.button("r", "  > Recent", ":FzfLua oldfiles<CR>"),
+  dashboard.button("s", "  > Settings", ":cd ~/.config/nvim | e init.lua<CR>"),
   dashboard.button("u", "󰑓  > Update Plugins", ":lua vim.pack.update()<CR>"),
   dashboard.button("q", "󰍃  > Quit NVIM", ":qa<CR>"),
 }
