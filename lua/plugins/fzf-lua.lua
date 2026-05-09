@@ -32,6 +32,7 @@ local function live_grep_with_ignore()
         "--glob", "!node_modules/**",
         "--glob", "!.git/**",
         "--glob", "!dist/**",
+        "--glob", "!build/**",
       }, " "),
     })
   else
