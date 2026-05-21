@@ -37,6 +37,7 @@ vim.diagnostic.config({
 local map = vim.keymap.set
 map("n", "gr", vim.lsp.buf.references, { desc = "LSP Goto Reference" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "LSP Goto Definition" })
+map("n", "gi", vim.lsp.buf.implementation, { desc = "LSP Goto Implementation" })
 map("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 map("n", "<leader>vws", vim.lsp.buf.workspace_symbol, { desc = "LSP Workspace Symbol" })
 map("n", "<leader>vd", vim.diagnostic.setloclist, { desc = "LSP Show Diagnostics" })

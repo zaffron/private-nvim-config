@@ -16,28 +16,33 @@ local function find_root_with_package_json()
   return nil
 end
 
-local function live_grep_with_ignore()
+local function live_grep_with_ignore(extra_globs)
   local root = find_root_with_package_json()
-  if root then
-    fzf.live_grep({
-      cwd = root,
-      cmd = table.concat({
-        "rg",
-        "--color=always",
-        "--column",
-        "--line-number",
-        "--no-heading",
-        "--smart-case",
-        "--hidden",
-        "--glob", "!node_modules/**",
-        "--glob", "!.git/**",
-        "--glob", "!dist/**",
-        "--glob", "!build/**",
-      }, " "),
-    })
-  else
+  if not root then
     fzf.live_grep()
+    return
   end
+  local cmd = {
+    "rg",
+    "--color=always",
+    "--column",
+    "--line-number",
+    "--no-heading",
+    "--smart-case",
+    "--hidden",
+    "--glob", "!node_modules/**",
+    "--glob", "!.git/**",
+    "--glob", "!dist/**",
+    "--glob", "!build/**",
+  }
+  for _, g in ipairs(extra_globs or {}) do
+    table.insert(cmd, "--glob")
+    table.insert(cmd, vim.fn.shellescape(g))
+  end
+  fzf.live_grep({
+    cwd = root,
+    cmd = table.concat(cmd, " "),
+  })
 end
 
 fzf.setup({
@@ -64,7 +69,13 @@ fzf.setup({
 fzf.register_ui_select()
 
 vim.keymap.set("n", "<C-p>", fzf.files, { desc = "fzf-lua find files" })
-vim.keymap.set("n", "<leader>fg", live_grep_with_ignore, { desc = "fzf-lua live grep (smart ignore)" })
+vim.keymap.set("n", "<leader>fg", function() live_grep_with_ignore() end, { desc = "fzf-lua live grep (smart ignore)" })
+vim.keymap.set("n", "<leader>fit", function()
+  live_grep_with_ignore({
+    "!*.{spec,test}.{ts,tsx,js,jsx}",
+    "!**/__tests__/**",
+  })
+end, { desc = "fzf-lua live grep (no specs/tests)" })
 vim.keymap.set("n", "<leader>fb", fzf.buffers, { desc = "fzf-lua buffers" })
 vim.keymap.set("n", "<leader>fh", fzf.help_tags, { desc = "fzf-lua help tags" })
 vim.keymap.set("n", "<leader>fGb", fzf.git_branches, { desc = "fzf-lua git branches" })
