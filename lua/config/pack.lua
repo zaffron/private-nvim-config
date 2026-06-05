@@ -5,7 +5,7 @@ vim.pack.add({
   "https://github.com/nvim-tree/nvim-web-devicons",
 
   -- Colorscheme
-  { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+  { src = "https://github.com/catppuccin/nvim",                 name = "catppuccin" },
 
   -- Treesitter
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
