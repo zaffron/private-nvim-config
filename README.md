@@ -41,7 +41,7 @@ without them, but the related features stay disabled until the tools are on your
 | [`lazygit`](https://github.com/jesseduffield/lazygit) | lazygit.nvim (`<leader>lg`) | Terminal git UI |
 | `git` | vim.pack, gitsigns, neogit, diffview | Plugin cloning + all git features |
 | [`imagemagick`](https://imagemagick.org/) (`magick`) | image.nvim | Inline image rendering (see below) |
-| C compiler + `git` | nvim-treesitter | Compiling parsers |
+| [`tree-sitter` CLI](https://github.com/tree-sitter/tree-sitter) + a C compiler | nvim-treesitter (`main` branch) | Generating & compiling parsers |
 
 ### Formatter binaries (conform.nvim)
 
@@ -58,10 +58,14 @@ manager:
 ### Install on macOS (Homebrew)
 
 ```sh
-brew install fzf ripgrep fd lazygit imagemagick
+brew install fzf ripgrep fd lazygit imagemagick tree-sitter
 # common formatters
 brew install stylua shfmt
 ```
+
+> The `tree-sitter` CLI is required because this config tracks the
+> nvim-treesitter `main` branch, which compiles parsers on the fly. It can also
+> be installed via `npm install -g tree-sitter-cli` or `cargo install tree-sitter-cli`.
 
 > LSP servers themselves are managed automatically by `mason.nvim` — you don't
 > install those by hand.
