@@ -54,5 +54,5 @@ require("conform").setup({
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.keymap.set("", "<leader>ff", function()
-  require("conform").format({ lsp_fallback = true, async = false, timeout_ms = 500 })
+  require("conform").format({ lsp_format = "fallback", async = false, timeout_ms = 500 })
 end, { desc = "Format buffer" })

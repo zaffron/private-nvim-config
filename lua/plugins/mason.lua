@@ -115,16 +115,16 @@ vim.lsp.config("tailwindcss", {
 -- })
 
 vim.lsp.config("pyright", {
+  filetypes = { "python" },
+  root_markers = {
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    "pyrightconfig.json",
+  },
   settings = {
-    filetypes = { "python" },
-    root_markers = {
-      "pyproject.toml",
-      "setup.py",
-      "setup.cfg",
-      "requirements.txt",
-      "Pipfile",
-      "pyrightconfi.json",
-    },
     python = {
       venvPath = ".",
       venv = ".venv",

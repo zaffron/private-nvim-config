@@ -28,7 +28,7 @@ dashboard.section.buttons.val = {
   dashboard.button("q", "󰍃  > Quit NVIM", ":qa<CR>"),
 }
 
-local plugin_count = #vim.pack.get()
+local plugin_count = #vim.pack.get(nil, { info = false })
 
 dashboard.section.footer.val = {
   "",

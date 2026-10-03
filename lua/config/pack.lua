@@ -98,7 +98,6 @@ vim.api.nvim_create_autocmd("UIEnter", {
       require("plugins.nvim-highlight-colors")
       require("plugins.todo-comments")
       require("plugins.neoscroll")
-      require("plugins.image")
     end)
   end,
 })
