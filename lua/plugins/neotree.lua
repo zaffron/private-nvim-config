@@ -1,3 +1,13 @@
+require("nvim-web-devicons").setup({
+  override_by_extension = {
+    proto = {
+      icon = vim.fn.nr2char(0xF1A0),
+      color = "#EA4335",
+      name = "Proto",
+    },
+  },
+})
+
 require("neo-tree").setup({
   filesystem = {
     window = {

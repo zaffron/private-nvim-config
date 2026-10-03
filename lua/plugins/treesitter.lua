@@ -15,30 +15,31 @@ local languages = {
   "go",
   "gotmpl",
   "git_config",
+  "proto"
 }
 
-vim.filetype.add({
-  extension = { rasi = "rasi", rofi = "rasi", wofi = "rasi" },
-  filename = {
-    ["vifmrc"] = "vim",
-  },
-  pattern = {
-    [".*/waybar/wallust/.*"] = "jsonc",
-    [".*/waybar/style/.*"] = "css",
-    [".*/waybar/configs/.*"] = "jsonc",
-    [".*/waybar/[^/]+"] = "jsonc",
-    [".*/kitty/.+%.conf"] = "kitty",
-    [".*/hypr/.+%.conf"] = "hyprlang",
-  },
-})
-
-if vim.fn.executable("hypr") == 1 then
-  table.insert(languages, "hyprlang")
-end
-
-if vim.fn.executable("rofi") == 1 or vim.fn.executable("wofi") == 1 then
-  table.insert(languages, "rasi")
-end
+-- vim.filetype.add({
+--   extension = { rasi = "rasi", rofi = "rasi", wofi = "rasi" },
+--   filename = {
+--     ["vifmrc"] = "vim",
+--   },
+--   pattern = {
+--     [".*/waybar/wallust/.*"] = "jsonc",
+--     [".*/waybar/style/.*"] = "css",
+--     [".*/waybar/configs/.*"] = "jsonc",
+--     [".*/waybar/[^/]+"] = "jsonc",
+--     [".*/kitty/.+%.conf"] = "kitty",
+--     [".*/hypr/.+%.conf"] = "hyprlang",
+--   },
+-- })
+--
+-- if vim.fn.executable("hypr") == 1 then
+--   table.insert(languages, "hyprlang")
+-- end
+--
+-- if vim.fn.executable("rofi") == 1 or vim.fn.executable("wofi") == 1 then
+--   table.insert(languages, "rasi")
+-- end
 
 local treesitter = require("nvim-treesitter")
 treesitter.install(languages)

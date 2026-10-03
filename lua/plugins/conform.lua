@@ -18,6 +18,7 @@ require("conform").setup({
     json = webdev_opts,
     markdown = webdev_opts,
     go = { "gofmt", "goimports" },
+    proto = { "buf" },
     ["markdown.mdx"] = { "prettierd", "markdownlint-cli2", "markdown-toc" },
   },
   default_format_opts = {

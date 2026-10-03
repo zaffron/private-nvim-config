@@ -23,11 +23,12 @@ local ensure_installed = {
   "bashls",
   "marksman",
   "gopls",
-  "tsgo",
+  "tsc",
   "tflint",
   "rust_analyzer",
   "terraformls",
   "qmlls",
+  "buf_ls",
 }
 
 require("mason").setup({
@@ -84,6 +85,34 @@ vim.lsp.config("tailwindcss", {
     end
   end,
 })
+
+-- tsgo (@typescript/native-preview) ships an extensionless ESM entry point,
+-- which Node < 20 cannot execute (ERR_UNKNOWN_FILE_EXTENSION). Projects that pin
+-- an old Node via .nvmrc (e.g. 18.x) make fnm hand nvim that Node, crashing the
+-- server on startup. Force tsgo to run under a modern Node without touching the
+-- project's runtime Node.
+-- local function modern_node()
+--   local candidates = {
+--     vim.fn.expand("~/.local/share/fnm/aliases/default/bin/node"),
+--     "/opt/homebrew/bin/node",
+--   }
+--   for _, node in ipairs(candidates) do
+--     if vim.fn.executable(node) == 1 then
+--       return node
+--     end
+--   end
+--   return "node"
+-- end
+--
+-- vim.lsp.config("tsgo", {
+--   cmd = function(dispatchers, config)
+--     local script = (config or {}).root_dir and config.root_dir .. "/node_modules/.bin/tsgo"
+--     if not (script and vim.fn.executable(script) == 1) then
+--       script = vim.fn.exepath("tsc")
+--     end
+--     return vim.lsp.rpc.start({ modern_node(), script, "--lsp", "--stdio" }, dispatchers)
+--   end,
+-- })
 
 vim.lsp.config("pyright", {
   settings = {
